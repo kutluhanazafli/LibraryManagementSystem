@@ -57,7 +57,7 @@ include "connection.php";
     <nav class="sidebar">
         <div class="sidebar-header">
             <a href="#" class="sidebar-brand">
-                Küt<span>Yön</span>
+                Kitap<span>Yönetim</span>
             </a>
             <div class="sidebar-toggler not-active">
                 <span></span>
@@ -74,38 +74,38 @@ include "connection.php";
                         <span class="link-title">Anasayfa</span>
                     </a>
                 </li>
-                <li class="nav-item nav-category">web apps</li>
+                <li class="nav-item nav-category">Üye Yönetim</li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"-->
+<!--                       aria-controls="emails">-->
+<!--                        <i class="link-icon" data-feather="mail"></i>-->
+<!--                        <span class="link-title">Email</span>-->
+<!--                        <i class="link-arrow" data-feather="chevron-down"></i>-->
+<!--                    </a>-->
+<!--                    <div class="collapse" id="emails">-->
+<!--                        <ul class="nav sub-menu">-->
+<!--                            <li class="nav-item">-->
+<!--                                <a href="pages/email/inbox.html" class="nav-link">Inbox</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a href="pages/email/read.html" class="nav-link">Read</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a href="pages/email/compose.html" class="nav-link">Compose</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </li>-->
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"
-                       aria-controls="emails">
-                        <i class="link-icon" data-feather="mail"></i>
-                        <span class="link-title">Email</span>
-                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    <a href="uyeler.php" class="nav-link">
+                        <i class="link-icon" data-feather="user"></i>
+                        <span class="link-title">Üyeler</span>
                     </a>
-                    <div class="collapse" id="emails">
-                        <ul class="nav sub-menu">
-                            <li class="nav-item">
-                                <a href="pages/email/inbox.html" class="nav-link">Inbox</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/email/read.html" class="nav-link">Read</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/email/compose.html" class="nav-link">Compose</a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/apps/chat.html" class="nav-link">
-                        <i class="link-icon" data-feather="message-square"></i>
-                        <span class="link-title">Chat</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/apps/calendar.html" class="nav-link">
-                        <i class="link-icon" data-feather="calendar"></i>
-                        <span class="link-title">Calendar</span>
+                    <a href="kutuphaneler.php" class="nav-link">
+                        <i class="link-icon" data-feather="book"></i>
+                        <span class="link-title">Kütüphaneler</span>
                     </a>
                 </li>
                 <li class="nav-item nav-category">Components</li>
@@ -397,18 +397,18 @@ include "connection.php";
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30"
+                            <img class="wd-30 ht-30 rounded-circle" src="assets/images/user.png"
                                  alt="profile">
                         </a>
                         <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
                             <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
                                 <div class="mb-3">
-                                    <img class="wd-80 ht-80 rounded-circle" src="https://via.placeholder.com/80x80"
+                                    <img class="wd-80 ht-80 rounded-circle" src="assets/images/user.png"
                                          alt="">
                                 </div>
                                 <div class="text-center">
-                                    <p class="tx-16 fw-bolder">Amiah Burton</p>
-                                    <p class="tx-12 text-muted">amiahburton@gmail.com</p>
+                                    <p class="tx-16 fw-bolder">Admin</p>
+                                    <p class="tx-12 text-muted">admin@kutuphane.com</p>
                                 </div>
                             </div>
                             <ul class="list-unstyled p-1">
@@ -427,7 +427,7 @@ include "connection.php";
                                 <a href="logout.php" class="text-body ms-0" style="cursor:pointer">
                                     <li class="dropdown-item py-2">
                                         <i class="me-2 icon-md" data-feather="log-out"></i>
-                                        <span>Log Out</span>
+                                        <span>Çıkış Yap</span>
                                     </li>
                                 </a>
                             </ul>
