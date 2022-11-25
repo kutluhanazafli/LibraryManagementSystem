@@ -16,9 +16,9 @@ $kategori = $stmt->fetch();
                     <div class="card-body">
                         <h6 class="card-title">Kategori Düzenle</h6>
 
-                        <input type="hidden" name="kategori_id" value="<?php echo $_GET['kategori_id'] ?>">
-
                         <form method="POST" action="process.php">
+
+                            <input type="hidden" name="kategori_id" value="<?php echo $_GET['kategori_id'] ?>">
 
                             <div class="row">
                                 <div class="mb-3 col-sm-12">

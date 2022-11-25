@@ -333,3 +333,107 @@ if (isset($_GET['yayinevisil'])) {
 }
 
 
+if (isset($_POST['kategoriekle'])){
+    $ad = $_POST['kategori_isim'];
+
+    $stmt = $db -> prepare('INSERT INTO "Kategoriler"("kategoriAd") VALUES (:ad)');
+    $stmt -> execute([
+        'ad' => $ad
+    ]);
+
+    if ($stmt) {
+        header("Location: kategoriler.php?durum=ok");
+    } else {
+        header("Location: kategoriler.php?durum=no");
+    }
+}
+
+
+if (isset($_POST['kategoriduzenle'])) {
+    $ad = $_POST['kategori_isim'];
+    $kategori_id = (int)$_POST['kategori_id'];
+
+    $stmt = $db->prepare('UPDATE "Kategoriler" SET "kategoriAd"=:ad WHERE "kategori_id"=:kategori_id');
+    $stmt->execute([
+        'ad' => $ad,
+        'kategori_id' => $kategori_id
+    ]);
+
+    if ($stmt) {
+        header("Location: kategoriduzenle.php?kategori_id=$kategori_id&durum=ok");
+    } else {
+        header("Location: kategoriduzenle.php?kategori_id=$kategori_id&durum=no");
+    }
+}
+
+
+if (isset($_GET['kategorisil'])) {
+    $kategori_id = $_GET['kategori_id'];
+
+    $stmt = $db -> prepare('DELETE FROM "Kategoriler" WHERE "kategori_id"=:kategori_id');
+    $stmt -> execute([
+        'kategori_id' => $kategori_id
+    ]);
+
+    if ($stmt) {
+        header("Location: kategoriler.php?durum=ok");
+    } else {
+        header("Location: kategoriler.php?durum=no");
+    }
+}
+
+
+if (isset($_POST['yazarekle'])){
+    $ad = $_POST['yazar_isim'];
+    $soyad = $_POST['yazar_soyad'];
+
+    $stmt = $db -> prepare('INSERT INTO "Yazarlar"("yazarAd", "yazarSoyad") VALUES (:ad, :soyad)');
+    $stmt -> execute([
+        'ad' => $ad,
+        'soyad' => $soyad
+    ]);
+
+    if ($stmt) {
+        header("Location: yazarlar.php?durum=ok");
+    } else {
+        header("Location: yazarlar.php?durum=no");
+    }
+}
+
+
+if (isset($_POST['yazarduzenle'])){
+    $ad = $_POST['yazar_isim'];
+    $soyad = $_POST['yazar_soyad'];
+    $yazar_id = (int)$_POST['yazar_id'];
+
+    $stmt = $db->prepare('UPDATE "Yazarlar" SET "yazarAd"=:ad, "yazarSoyad"=:soyad WHERE "yazar_id"=:yazar_id');
+    $stmt->execute([
+        'ad' => $ad,
+        'soyad' => $soyad,
+        'yazar_id' => $yazar_id
+    ]);
+
+    if ($stmt) {
+        header("Location: yazarduzenle.php?yazar_id=$yazar_id&durum=ok");
+    } else {
+        header("Location: yazarduzenle.php?yazar_id=$yazar_id&durum=no");
+    }
+}
+
+
+if (isset($_GET['yazarsil'])) {
+    $yazar_id = $_GET['yazar_id'];
+
+    $stmt = $db -> prepare('DELETE FROM "Yazarlar" WHERE "yazar_id"=:yazar_id');
+    $stmt -> execute([
+        'yazar_id' => $yazar_id
+    ]);
+
+    if ($stmt) {
+        header("Location: yazarlar.php?durum=ok");
+    } else {
+        header("Location: yazarlar.php?durum=no");
+    }
+}
+
+
