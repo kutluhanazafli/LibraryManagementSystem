@@ -7,15 +7,15 @@ include "_header.php";
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title">Kütüphane Ekle</h6>
+                        <h6 class="card-title">Yayınevi Ekle</h6>
 
                         <form method="POST" action="process.php">
 
                             <div class="row">
                                 <div class="mb-3 col-sm-12">
-                                    <label for="exampleInputText1" class="form-label">Kütüphane İsmi</label>
-                                    <input required type="text" class="form-control" id="exampleInputText1" name="kutuphane_isim"
-                                           value="" placeholder="Kütüphane İsmi Giriniz">
+                                    <label for="exampleInputText1" class="form-label">Yayınevi İsmi</label>
+                                    <input required type="text" class="form-control" id="exampleInputText1" name="yayinevi_isim"
+                                           value="" placeholder="Yayınevi İsmi Giriniz">
                                 </div>
                             </div>
 
@@ -64,7 +64,7 @@ include "_header.php";
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary" type="submit" name="kutuphaneekle">Gönder</button>
+                            <button class="btn btn-primary" type="submit" name="yayineviekle">Gönder</button>
                         </form>
                     </div>
                 </div>

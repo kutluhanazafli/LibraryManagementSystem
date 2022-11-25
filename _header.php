@@ -74,7 +74,7 @@ include "connection.php";
                         <span class="link-title">Anasayfa</span>
                     </a>
                 </li>
-                <li class="nav-item nav-category">Üye Yönetim</li>
+                <li class="nav-item nav-category">Yönetim</li>
 <!--                <li class="nav-item">-->
 <!--                    <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"-->
 <!--                       aria-controls="emails">-->
@@ -104,8 +104,32 @@ include "connection.php";
                 </li>
                 <li class="nav-item">
                     <a href="kutuphaneler.php" class="nav-link">
-                        <i class="link-icon" data-feather="book"></i>
+                        <i class="link-icon" data-feather="book-open"></i>
                         <span class="link-title">Kütüphaneler</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="yayinevleri.php" class="nav-link">
+                        <i class="link-icon" data-feather="home"></i>
+                        <span class="link-title">Yayınevleri</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="kategoriler.php" class="nav-link">
+                        <i class="link-icon" data-feather="layers"></i>
+                        <span class="link-title">Kategoriler</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="yazarlar.php" class="nav-link">
+                        <i class="link-icon" data-feather="edit-3"></i>
+                        <span class="link-title">Yazarlar</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="kitaplar.php" class="nav-link">
+                        <i class="link-icon" data-feather="book"></i>
+                        <span class="link-title">Kitaplar</span>
                     </a>
                 </li>
                 <li class="nav-item nav-category">Components</li>

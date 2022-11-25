@@ -13,7 +13,7 @@ include "_header.php";
                     <div style="clear-after: both"></div>
                     <br>
                     <div class="table-responsive">
-                        <table id="dataTableExample" class="table table-striped">
+                        <table id="dataTableExample" class="table">
                             <thead>
                             <tr>
                                 <th style="text-align: center">Sıra</th>

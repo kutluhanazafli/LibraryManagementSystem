@@ -8,8 +8,8 @@ include "_header.php";
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title col-md-11" style="float: left">Kütüphaneler</h6>
-                        <a class="btn btn-primary col-md-1" href="kutuphaneekle.php" role="button">Kütüphane Ekle</a>
+                        <h6 class="card-title col-md-11" style="float: left">Kategoriler</h6>
+                        <a class="btn btn-primary col-md-1" href="kategoriekle.php" role="button">Kategori Ekle</a>
                         <div style="clear-after: both"></div>
                         <br>
                         <div class="table-responsive">
@@ -18,9 +18,6 @@ include "_header.php";
                                 <tr>
                                     <th style="text-align: center">Sıra</th>
                                     <th style="text-align: center">Ad</th>
-                                    <th style="text-align: center">İl</th>
-                                    <th style="text-align: center">İlçe</th>
-                                    <th style="text-align: center">Mahalle</th>
                                     <th style="text-align: center">Düzenle</th>
                                     <th style="text-align: center">Sil</th>
                                 </tr>
@@ -29,24 +26,21 @@ include "_header.php";
                                 <tbody>
                                 <?php
                                 $say = 0;
-                                $KutuphaneSor = $db->query('SELECT * FROM "Kutuphane" INNER JOIN "Adresler" ON "Kutuphane".adres_id = "Adresler".adres_id');
-                                while ($kutuphane = $KutuphaneSor->fetch(PDO::FETCH_ASSOC)) {
+                                $KategoriSor = $db->query('SELECT * FROM "Kategoriler"');
+                                while ($kategori = $KategoriSor->fetch(PDO::FETCH_ASSOC)) {
                                     $say++;
 
                                     ?>
                                     <tr>
                                         <td style="text-align: center"><?php echo $say ?></td>
-                                        <td style="text-align: center"><?php echo $kutuphane['kutuphaneAd'] ?></td>
-                                        <td style="text-align: center"><?php echo $kutuphane['il'] ?></td>
-                                        <td style="text-align: center"><?php echo $kutuphane['ilce'] ?></td>
-                                        <td style="text-align: center"><?php echo $kutuphane['mahalle'] ?></td>
+                                        <td style="text-align: center"><?php echo $kategori['kategoriAd'] ?></td>
                                         <td width="200" style="text-align: center">
-                                            <a href="kutuphaneduzenle.php?kutuphane_id=<?php echo $kutuphane['kutuphane_id']; ?>">
+                                            <a href="kategoriduzenle.php?kategori_id=<?php echo $kategori['kategori_id']; ?>">
                                                 <button class="btn btn-warning btn-xs">Düzenle</button>
                                             </a>
                                         </td>
                                         <td width="200" style="text-align: center">
-                                            <a href="process.php?kutuphane_id=<?php echo $kutuphane['kutuphane_id']; ?>&kutuphanesil=ok">
+                                            <a href="process.php?kategori_id=<?php echo $kategori['kategori_id']; ?>&kategorisil=ok">
                                                 <button class="btn btn-danger btn-xs">Sil</button>
                                             </a>
                                         </td>
