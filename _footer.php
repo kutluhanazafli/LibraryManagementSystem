@@ -38,6 +38,7 @@
 
 <script src="assets/js/dashboard-light.js"></script>
 <script src="assets/js/datepicker.js"></script>
+<script src="assets/js/locales/bootstrap-datepicker.tr.js"></script>
 <script src="assets/js/data-table.js"></script>
 <script src="assets/js/tinymce.js"></script>
 <script src="assets/js/simplemde.js"></script>

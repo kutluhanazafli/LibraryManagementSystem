@@ -140,6 +140,12 @@ include "connection.php";
                         <span class="link-title">Kütüphane Kitap Arşivi</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="emanetler.php" class="nav-link">
+                        <i class="link-icon" data-feather="shuffle"></i>
+                        <span class="link-title">Emanetler</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>

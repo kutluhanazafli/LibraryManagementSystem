@@ -8,8 +8,8 @@ include "_header.php";
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title col-md-11" style="float: left">Üyeler</h6>
-                    <a class="btn btn-primary col-md-1" href="uyeekle.php" role="button">Üye Ekle</a>
+                    <h6 class="card-title col-md-10" style="float: left">Üyeler</h6>
+                    <a class="btn btn-primary col-md-2" href="uyeekle.php" role="button">Üye Ekle</a>
                     <div style="clear-after: both"></div>
                     <br>
                     <div class="table-responsive">

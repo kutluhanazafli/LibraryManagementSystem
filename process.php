@@ -600,3 +600,110 @@ if (isset($_GET['arsivsil'])) {
         header("Location: arsiv.php?durum=no");
     }
 }
+
+
+if (isset($_POST['emanetekle'])){
+    $uye_id = $_POST['uye_id'];
+    $kitap_id = $_POST['kitap_id'];
+    $kutuphane_id = $_POST['kutuphane_id'];
+    $emanetTarihi = $_POST['emanetTarihi'];
+
+    $stmt = $db->prepare('UPDATE "Arsiv" SET "adet"="adet"-1 WHERE "kitap_id"=:kitap_id AND "kutuphane_id"=:kutuphane_id AND "adet">0');
+    $stmt->execute([
+        'kitap_id' => $kitap_id,
+        'kutuphane_id' => $kutuphane_id
+    ]);
+
+    if ($stmt) {
+        $stmt = $db->prepare('INSERT INTO "Emanet"("uye_id", "kitap_id", "kutuphane_id", "emanetTarihi") VALUES (:uye_id, :kitap_id, :kutuphane_id, :emanetTarihi)');
+        $stmt->execute([
+            'uye_id' => $uye_id,
+            'kitap_id' => $kitap_id,
+            'kutuphane_id' => $kutuphane_id,
+            'emanetTarihi' => $emanetTarihi
+        ]);
+
+        if ($stmt) {
+            header("Location: emanetler.php?durum=ok");
+        } else {
+            header("Location: emanetler.php?durum=no");
+        }
+    } else {
+        header("Location: emanetler.php?durum=nobook");
+    }
+}
+
+
+if (isset($_POST['emanetduzenle'])){
+    $emanet_id = $_POST['emanet_id'];
+    $uye_id = $_POST['uye_id'];
+    $kitap_id = $_POST['kitap_id'];
+    $kutuphane_id = $_POST['kutuphane_id'];
+    $emanetTarihi = $_POST['emanetTarihi'];
+    $teslimTarihi = $_POST['teslimTarihi'];
+
+    if ($_POST['teslimedildi'] != null) {
+        $teslimedildi = $_POST['teslimedildi'];
+
+        $kontrol = $db->prepare('SELECT * FROM "Emanet" WHERE "emanet_id"=:emanet_id');
+        $kontrol->execute([
+            'emanet_id' => $emanet_id
+        ]);
+        $kontrol = $kontrol->fetch(PDO::FETCH_ASSOC);
+
+        if ($kontrol['teslimTarihi'] == null){
+            $stmt = $db->prepare('UPDATE "Arsiv" SET "adet"="adet"+1 WHERE "kitap_id"=:kitap_id AND "kutuphane_id"=:kutuphane_id');
+            $stmt->execute([
+                'kitap_id' => $kitap_id,
+                'kutuphane_id' => $kutuphane_id
+            ]);
+        }
+
+        $stmt = $db->prepare('UPDATE "Emanet" SET "uye_id"=:uye_id, "kitap_id"=:kitap_id, "kutuphane_id"=:kutuphane_id, "emanetTarihi"=:emanetTarihi, "teslimTarihi"=:teslimTarihi WHERE "emanet_id"=:emanet_id');
+        $stmt->execute([
+            'uye_id' => $uye_id,
+            'kitap_id' => $kitap_id,
+            'kutuphane_id' => $kutuphane_id,
+            'emanetTarihi' => $emanetTarihi,
+            'teslimTarihi' => $teslimTarihi,
+            'emanet_id' => $emanet_id
+        ]);
+
+        if ($stmt) {
+            header("Location: emanetduzenle.php?emanet_id=$emanet_id&durum=ok");
+        } else {
+            header("Location: emanetduzenle.php?emanet_id=$emanet_id&durum=no");
+        }
+
+    } elseif ($_POST['teslimedildi'] == null) {
+        $stmt = $db->prepare('UPDATE "Emanet" SET "uye_id"=:uye_id, "kitap_id"=:kitap_id, "kutuphane_id"=:kutuphane_id, "emanetTarihi"=:emanetTarihi, "teslimTarihi"=:teslimTarihi WHERE "emanet_id"=:emanet_id');
+        $stmt->execute([
+            'uye_id' => $uye_id,
+            'kitap_id' => $kitap_id,
+            'kutuphane_id' => $kutuphane_id,
+            'emanetTarihi' => $emanetTarihi,
+            'emanet_id' => $emanet_id,
+            'teslimTarihi' => null
+        ]);
+
+        if ($stmt) {
+            header("Location: emanetduzenle.php?emanet_id=$emanet_id&durum=ok");
+        } else {
+            header("Location: emanetduzenle.php?emanet_id=$emanet_id&durum=no");
+        }
+    }
+}
+
+
+if (isset($_GET['emanetsil'])) {
+    $emanet_id = $_GET['emanet_id'];
+
+    $stmt = $db->prepare('INSERT INTO "Arsiv"("kitap_id", "kutuphane_id", "adet") VALUES (:kitap_id, :kutuphane_id, 1) ON CONFLICT ("kitap_id", "kutuphane_id") DO UPDATE SET "adet"="adet"+1');
+
+
+    if ($stmt) {
+        header("Location: emanetler.php?durum=ok");
+    } else {
+        header("Location: emanetler.php?durum=no");
+    }
+}
