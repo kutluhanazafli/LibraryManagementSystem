@@ -8,8 +8,8 @@ include "_header.php";
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title col-md-11" style="float: left">Kitaplar</h6>
-                        <a class="btn btn-primary col-md-1" href="kitapekle.php" role="button">Kitap Ekle</a>
+                        <h6 class="card-title col-md-10" style="float: left">Kütüphane Arşiv</h6>
+                        <a class="btn btn-primary col-md-2" href="arsivekle.php" role="button">Kütüphaneye Kitap Ekle</a>
                         <div style="clear-after: both"></div>
                         <br>
                         <div class="table-responsive">
@@ -17,10 +17,10 @@ include "_header.php";
                                 <thead>
                                 <tr>
                                     <th style="text-align: center">Sıra</th>
-                                    <th style="text-align: center">Ad</th>
+                                    <th style="text-align: center">Kütüphane Adı</th>
+                                    <th style="text-align: center">Kitap Adı</th>
                                     <th style="text-align: center">Kategori</th>
                                     <th style="text-align: center">Yazar</th>
-                                    <th style="text-align: center">Sayfa Sayısı</th>
                                     <th style="text-align: center">Düzenle</th>
                                     <th style="text-align: center">Sil</th>
                                 </tr>
@@ -29,24 +29,24 @@ include "_header.php";
                                 <tbody>
                                 <?php
                                 $say = 0;
-                                $KitapSor = $db->query('SELECT * FROM "Kitaplar" INNER JOIN "KitapYazar" ON "KitapYazar"."kitap_id" = "Kitaplar"."kitap_id" INNER JOIN "Yazarlar" ON "Yazarlar" . "yazar_id" = "KitapYazar"."yazar_id" INNER JOIN "KitapKategori" ON "KitapKategori"."kitap_id" = "Kitaplar"."kitap_id" INNER JOIN "Kategoriler" ON "Kategoriler"."kategori_id" = "KitapKategori"."kategori_id"');
-                                while ($kitap = $KitapSor->fetch(PDO::FETCH_ASSOC)) {
+                                $ArsivSor = $db->query('SELECT * FROM "Arsiv" INNER JOIN "Kutuphane" ON "Arsiv"."kutuphane_id" = "Kutuphane"."kutuphane_id" INNER JOIN "Kitaplar" ON "Arsiv"."kitap_id" = "Kitaplar"."kitap_id" INNER JOIN "KitapKategori" ON "Kitaplar"."kitap_id" = "KitapKategori"."kitap_id" INNER JOIN "Kategoriler" ON "KitapKategori"."kategori_id" = "Kategoriler"."kategori_id" INNER JOIN "KitapYazar" ON "Kitaplar"."kitap_id" = "KitapYazar"."kitap_id" INNER JOIN "Yazarlar" ON "KitapYazar"."yazar_id" = "Yazarlar"."yazar_id"');
+                                while ($arsiv = $ArsivSor->fetch(PDO::FETCH_ASSOC)) {
                                     $say++;
 
                                     ?>
                                     <tr>
                                         <td style="text-align: center"><?php echo $say ?></td>
-                                        <td style="text-align: center"><?php echo $kitap['kitapAdi'] ?></td>
-                                        <td style="text-align: center"><?php echo $kitap['kategoriAd'] ?></td>
-                                        <td style="text-align: center"><?php echo $kitap['yazarAd']. " " . $kitap['yazarSoyad'] ?></td>
-                                        <td style="text-align: center"><?php echo $kitap['sayfaSayisi'] ?></td>
+                                        <td style="text-align: center"><?php echo $arsiv['kutuphaneAd'] ?></td>
+                                        <td style="text-align: center"><?php echo $arsiv['kitapAdi'] ?></td>
+                                        <td style="text-align: center"><?php echo $arsiv['kategoriAd'] ?></td>
+                                        <td style="text-align: center"><?php echo $arsiv['yazarAd']. " " . $arsiv['yazarSoyad'] ?></td>
                                         <td width="200" style="text-align: center">
-                                            <a href="kitapduzenle.php?kitap_id=<?php echo $kitap['kitap_id']; ?>">
+                                            <a href="kitapduzenle.php?kitap_id=<?php echo $arsiv['kitap_id']; ?>">
                                                 <button class="btn btn-warning btn-xs">Düzenle</button>
                                             </a>
                                         </td>
                                         <td width="200" style="text-align: center">
-                                            <a href="process.php?kitap_id=<?php echo $kitap['kitap_id']; ?>&kitapsil=ok">
+                                            <a href="process.php?kitap_id=<?php echo $arsiv['kitap_id']; ?>&kitapsil=ok">
                                                 <button class="btn btn-danger btn-xs">Sil</button>
                                             </a>
                                         </td>

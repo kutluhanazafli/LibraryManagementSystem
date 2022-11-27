@@ -17,8 +17,8 @@ if (isset($_POST['uyeekle'])) {
     $kat = $_POST['kat'];
     $postakodu = $_POST['postakodu'];
 
-    $stmt = $db -> prepare('INSERT INTO "Adresler"(il, ilce, mahalle, cadde, sokak, binano, kat, postakodu) VALUES(:il, :ilce, :mahalle, :cadde, :sokak, :binano, :kat, :postakodu) RETURNING adres_id as adres_id');
-    $stmt -> execute([
+    $stmt = $db->prepare('INSERT INTO "Adresler"(il, ilce, mahalle, cadde, sokak, binano, kat, postakodu) VALUES(:il, :ilce, :mahalle, :cadde, :sokak, :binano, :kat, :postakodu) RETURNING adres_id as adres_id');
+    $stmt->execute([
         'il' => $il,
         'ilce' => $ilce,
         'mahalle' => $mahalle,
@@ -29,11 +29,11 @@ if (isset($_POST['uyeekle'])) {
         'postakodu' => $postakodu
     ]);
 
-    $adres_id = $stmt -> fetch(PDO::FETCH_ASSOC)['adres_id'];
+    $adres_id = $stmt->fetch(PDO::FETCH_ASSOC)['adres_id'];
     $adres_id = (int)$adres_id;
 
-    $stmt = $db -> prepare('INSERT INTO "Uyeler"("uyeAd", "uyeSoyad", eposta, telefon, cinsiyet, adres_id) VALUES (:ad, :soyad, :mail, :tel, :cinsiyet, :adres_id)');
-    $stmt -> execute([
+    $stmt = $db->prepare('INSERT INTO "Uyeler"("uyeAd", "uyeSoyad", eposta, telefon, cinsiyet, adres_id) VALUES (:ad, :soyad, :mail, :tel, :cinsiyet, :adres_id)');
+    $stmt->execute([
         'ad' => $ad,
         'soyad' => $soyad,
         'mail' => $mail,
@@ -50,7 +50,7 @@ if (isset($_POST['uyeekle'])) {
 }
 
 
-if (isset($_POST['uyeduzenle'])){
+if (isset($_POST['uyeduzenle'])) {
     $ad = $_POST['uye_isim'];
     $soyad = $_POST['uye_soyad'];
     $mail = $_POST['uye_mail'];
@@ -68,8 +68,8 @@ if (isset($_POST['uyeduzenle'])){
     $uye_id = (int)$_POST['uye_id'];
     $adres_id = (int)$_POST['adres_id'];
 
-    $stmt = $db -> prepare('UPDATE "Adresler" SET il=:il, ilce=:ilce, mahalle=:mahalle, cadde=:cadde, sokak=:sokak, binano=:binano, kat=:kat, postakodu=:postakodu WHERE adres_id=:adres_id');
-    $stmt -> execute([
+    $stmt = $db->prepare('UPDATE "Adresler" SET il=:il, ilce=:ilce, mahalle=:mahalle, cadde=:cadde, sokak=:sokak, binano=:binano, kat=:kat, postakodu=:postakodu WHERE adres_id=:adres_id');
+    $stmt->execute([
         'il' => $il,
         'ilce' => $ilce,
         'mahalle' => $mahalle,
@@ -81,8 +81,8 @@ if (isset($_POST['uyeduzenle'])){
         'adres_id' => $adres_id
     ]);
 
-    $stmt = $db -> prepare('UPDATE "Uyeler" SET "uyeAd"=:ad, "uyeSoyad"=:soyad, eposta=:mail, telefon=:tel, cinsiyet=:cinsiyet WHERE uye_id=:uye_id');
-    $stmt -> execute([
+    $stmt = $db->prepare('UPDATE "Uyeler" SET "uyeAd"=:ad, "uyeSoyad"=:soyad, eposta=:mail, telefon=:tel, cinsiyet=:cinsiyet WHERE uye_id=:uye_id');
+    $stmt->execute([
         'ad' => $ad,
         'soyad' => $soyad,
         'mail' => $mail,
@@ -102,16 +102,16 @@ if (isset($_POST['uyeduzenle'])){
 if (isset($_GET['uyesil'])) {
     $uye_id = $_GET['uye_id'];
 
-    $stmt1 = $db -> prepare('DELETE FROM "Uyeler" WHERE uye_id=:uye_id RETURNING adres_id as adres_id');
-    $stmt1 -> execute([
+    $stmt1 = $db->prepare('DELETE FROM "Uyeler" WHERE uye_id=:uye_id RETURNING adres_id as adres_id');
+    $stmt1->execute([
         'uye_id' => $uye_id
     ]);
 
-    $adres_id = $stmt1 -> fetch(PDO::FETCH_ASSOC)['adres_id'];
+    $adres_id = $stmt1->fetch(PDO::FETCH_ASSOC)['adres_id'];
     $adres_id = (int)$adres_id;
 
-    $stmt2 = $db -> prepare('DELETE FROM "Adresler" WHERE adres_id=:adres_id');
-    $stmt2 -> execute([
+    $stmt2 = $db->prepare('DELETE FROM "Adresler" WHERE adres_id=:adres_id');
+    $stmt2->execute([
         'adres_id' => $adres_id
     ]);
 
@@ -123,7 +123,7 @@ if (isset($_GET['uyesil'])) {
 }
 
 
-if (isset($_POST['kutuphaneekle'])){
+if (isset($_POST['kutuphaneekle'])) {
     $ad = $_POST['kutuphane_isim'];
     $il = $_POST['il'];
     $ilce = $_POST['ilce'];
@@ -134,8 +134,8 @@ if (isset($_POST['kutuphaneekle'])){
     $kat = $_POST['kat'];
     $postakodu = $_POST['postakodu'];
 
-    $stmt = $db -> prepare('INSERT INTO "Adresler"(il, ilce, mahalle, cadde, sokak, binano, kat, postakodu) VALUES (:il, :ilce, :mahalle, :cadde, :sokak, :binano, :kat, :postakodu) RETURNING adres_id as adres_id');
-    $stmt -> execute([
+    $stmt = $db->prepare('INSERT INTO "Adresler"(il, ilce, mahalle, cadde, sokak, binano, kat, postakodu) VALUES (:il, :ilce, :mahalle, :cadde, :sokak, :binano, :kat, :postakodu) RETURNING adres_id as adres_id');
+    $stmt->execute([
         'il' => $il,
         'ilce' => $ilce,
         'mahalle' => $mahalle,
@@ -146,11 +146,11 @@ if (isset($_POST['kutuphaneekle'])){
         'postakodu' => $postakodu
     ]);
 
-    $adres_id = $stmt -> fetch(PDO::FETCH_ASSOC)['adres_id'];
+    $adres_id = $stmt->fetch(PDO::FETCH_ASSOC)['adres_id'];
     $adres_id = (int)$adres_id;
 
-    $stmt = $db -> prepare('INSERT INTO "Kutuphane"("kutuphaneAd", adres_id) VALUES (:ad, :adres_id)');
-    $stmt -> execute([
+    $stmt = $db->prepare('INSERT INTO "Kutuphane"("kutuphaneAd", adres_id) VALUES (:ad, :adres_id)');
+    $stmt->execute([
         'ad' => $ad,
         'adres_id' => $adres_id
     ]);
@@ -207,16 +207,16 @@ if (isset($_POST['kutuphaneduzenle'])) {
 if (isset($_GET['kutuphanesil'])) {
     $kutuphane_id = $_GET['kutuphane_id'];
 
-    $stmt1 = $db -> prepare('DELETE FROM "Kutuphane" WHERE kutuphane_id=:kutuphane_id RETURNING adres_id as adres_id');
-    $stmt1 -> execute([
+    $stmt1 = $db->prepare('DELETE FROM "Kutuphane" WHERE kutuphane_id=:kutuphane_id RETURNING adres_id as adres_id');
+    $stmt1->execute([
         'kutuphane_id' => $kutuphane_id
     ]);
 
-    $adres_id = $stmt1 -> fetch(PDO::FETCH_ASSOC)['adres_id'];
+    $adres_id = $stmt1->fetch(PDO::FETCH_ASSOC)['adres_id'];
     $adres_id = (int)$adres_id;
 
-    $stmt2 = $db -> prepare('DELETE FROM "Adresler" WHERE adres_id=:adres_id');
-    $stmt2 -> execute([
+    $stmt2 = $db->prepare('DELETE FROM "Adresler" WHERE adres_id=:adres_id');
+    $stmt2->execute([
         'adres_id' => $adres_id
     ]);
 
@@ -228,7 +228,7 @@ if (isset($_GET['kutuphanesil'])) {
 }
 
 
-if (isset($_POST['yayineviekle'])){
+if (isset($_POST['yayineviekle'])) {
     $ad = $_POST['yayinevi_isim'];
     $il = $_POST['il'];
     $ilce = $_POST['ilce'];
@@ -239,8 +239,8 @@ if (isset($_POST['yayineviekle'])){
     $kat = $_POST['kat'];
     $postakodu = $_POST['postakodu'];
 
-    $stmt = $db -> prepare('INSERT INTO "Adresler"(il, ilce, mahalle, cadde, sokak, binano, kat, postakodu) VALUES (:il, :ilce, :mahalle, :cadde, :sokak, :binano, :kat, :postakodu) RETURNING adres_id as adres_id');
-    $stmt -> execute([
+    $stmt = $db->prepare('INSERT INTO "Adresler"(il, ilce, mahalle, cadde, sokak, binano, kat, postakodu) VALUES (:il, :ilce, :mahalle, :cadde, :sokak, :binano, :kat, :postakodu) RETURNING adres_id as adres_id');
+    $stmt->execute([
         'il' => $il,
         'ilce' => $ilce,
         'mahalle' => $mahalle,
@@ -251,11 +251,11 @@ if (isset($_POST['yayineviekle'])){
         'postakodu' => $postakodu
     ]);
 
-    $adres_id = $stmt -> fetch(PDO::FETCH_ASSOC)['adres_id'];
+    $adres_id = $stmt->fetch(PDO::FETCH_ASSOC)['adres_id'];
     $adres_id = (int)$adres_id;
 
-    $stmt = $db -> prepare('INSERT INTO "YayinEvleri"("yayinEviAd", adres_id) VALUES (:ad, :adres_id)');
-    $stmt -> execute([
+    $stmt = $db->prepare('INSERT INTO "YayinEvleri"("yayinEviAd", adres_id) VALUES (:ad, :adres_id)');
+    $stmt->execute([
         'ad' => $ad,
         'adres_id' => $adres_id
     ]);
@@ -312,16 +312,16 @@ if (isset($_POST['yayineviduzenle'])) {
 if (isset($_GET['yayinevisil'])) {
     $yayinevi_id = $_GET['yayinevi_id'];
 
-    $stmt1 = $db -> prepare('DELETE FROM "YayinEvleri" WHERE "yayinEvi_id"=:yayinevi_id RETURNING adres_id as adres_id');
-    $stmt1 -> execute([
+    $stmt1 = $db->prepare('DELETE FROM "YayinEvleri" WHERE "yayinEvi_id"=:yayinevi_id RETURNING adres_id as adres_id');
+    $stmt1->execute([
         'yayinevi_id' => $yayinevi_id
     ]);
 
-    $adres_id = $stmt1 -> fetch(PDO::FETCH_ASSOC)['adres_id'];
+    $adres_id = $stmt1->fetch(PDO::FETCH_ASSOC)['adres_id'];
     $adres_id = (int)$adres_id;
 
-    $stmt2 = $db -> prepare('DELETE FROM "Adresler" WHERE adres_id=:adres_id');
-    $stmt2 -> execute([
+    $stmt2 = $db->prepare('DELETE FROM "Adresler" WHERE adres_id=:adres_id');
+    $stmt2->execute([
         'adres_id' => $adres_id
     ]);
 
@@ -333,11 +333,11 @@ if (isset($_GET['yayinevisil'])) {
 }
 
 
-if (isset($_POST['kategoriekle'])){
+if (isset($_POST['kategoriekle'])) {
     $ad = $_POST['kategori_isim'];
 
-    $stmt = $db -> prepare('INSERT INTO "Kategoriler"("kategoriAd") VALUES (:ad)');
-    $stmt -> execute([
+    $stmt = $db->prepare('INSERT INTO "Kategoriler"("kategoriAd") VALUES (:ad)');
+    $stmt->execute([
         'ad' => $ad
     ]);
 
@@ -370,8 +370,8 @@ if (isset($_POST['kategoriduzenle'])) {
 if (isset($_GET['kategorisil'])) {
     $kategori_id = $_GET['kategori_id'];
 
-    $stmt = $db -> prepare('DELETE FROM "Kategoriler" WHERE "kategori_id"=:kategori_id');
-    $stmt -> execute([
+    $stmt = $db->prepare('DELETE FROM "Kategoriler" WHERE "kategori_id"=:kategori_id');
+    $stmt->execute([
         'kategori_id' => $kategori_id
     ]);
 
@@ -383,12 +383,12 @@ if (isset($_GET['kategorisil'])) {
 }
 
 
-if (isset($_POST['yazarekle'])){
+if (isset($_POST['yazarekle'])) {
     $ad = $_POST['yazar_isim'];
     $soyad = $_POST['yazar_soyad'];
 
-    $stmt = $db -> prepare('INSERT INTO "Yazarlar"("yazarAd", "yazarSoyad") VALUES (:ad, :soyad)');
-    $stmt -> execute([
+    $stmt = $db->prepare('INSERT INTO "Yazarlar"("yazarAd", "yazarSoyad") VALUES (:ad, :soyad)');
+    $stmt->execute([
         'ad' => $ad,
         'soyad' => $soyad
     ]);
@@ -401,7 +401,7 @@ if (isset($_POST['yazarekle'])){
 }
 
 
-if (isset($_POST['yazarduzenle'])){
+if (isset($_POST['yazarduzenle'])) {
     $ad = $_POST['yazar_isim'];
     $soyad = $_POST['yazar_soyad'];
     $yazar_id = (int)$_POST['yazar_id'];
@@ -424,8 +424,8 @@ if (isset($_POST['yazarduzenle'])){
 if (isset($_GET['yazarsil'])) {
     $yazar_id = $_GET['yazar_id'];
 
-    $stmt = $db -> prepare('DELETE FROM "Yazarlar" WHERE "yazar_id"=:yazar_id');
-    $stmt -> execute([
+    $stmt = $db->prepare('DELETE FROM "Yazarlar" WHERE "yazar_id"=:yazar_id');
+    $stmt->execute([
         'yazar_id' => $yazar_id
     ]);
 
@@ -437,3 +437,108 @@ if (isset($_GET['yazarsil'])) {
 }
 
 
+if (isset($_POST['kitapekle'])) {
+    $ad = $_POST['kitap_isim'];
+    $isbn = $_POST['kitap_isbn'];
+    $sayfa = $_POST['kitap_sayfa'];
+    $tarih = $_POST['kitap_tarih'];
+    $yayinevi = $_POST['yayinevi'];
+    $yazar = $_POST['yazar'];
+    $kategori = $_POST['kategori'];
+
+    $stmt = $db->prepare('INSERT INTO "Kitaplar"("kitapAdi", "ISBN", "sayfaSayisi", "yayinTarihi", "yayinEvi_id") VALUES (:ad, :isbn, :sayfa, :tarih, :yayinevi) RETURNING kitap_id as kitap_id');
+    $stmt->execute([
+        'ad' => $ad,
+        'isbn' => $isbn,
+        'sayfa' => $sayfa,
+        'tarih' => $tarih,
+        'yayinevi' => $yayinevi
+    ]);
+
+    $kitap_id = $stmt->fetch(PDO::FETCH_ASSOC)['kitap_id'];
+    $kitap_id = (int)$kitap_id;
+
+    $stmt = $db->prepare('INSERT INTO "KitapYazar"("kitap_id", "yazar_id") VALUES (:kitap_id, :yazar)');
+    $stmt->execute([
+        'kitap_id' => $kitap_id,
+        'yazar' => $yazar
+    ]);
+
+    $stmt = $db->prepare('INSERT INTO "KitapKategori"("kitap_id", "kategori_id") VALUES (:kitap_id, :kategori)');
+    $stmt->execute([
+        'kitap_id' => $kitap_id,
+        'kategori' => $kategori
+    ]);
+
+    if ($stmt) {
+        header("Location: kitaplar.php?durum=ok");
+    } else {
+        header("Location: kitaplar.php?durum=no");
+    }
+}
+
+
+if (isset($_POST['kitapduzenle'])){
+    $ad = $_POST['kitap_isim'];
+    $isbn = $_POST['kitap_isbn'];
+    $sayfa = $_POST['kitap_sayfa'];
+    $tarih = $_POST['kitap_tarih'];
+    $yayinevi = $_POST['yayinevi'];
+    $yazar = $_POST['yazar'];
+    $kategori = $_POST['kategori'];
+    $kitap_id = (int)$_POST['kitap_id'];
+
+    $stmt = $db->prepare('UPDATE "Kitaplar" SET "kitapAdi"=:ad, "ISBN"=:isbn, "sayfaSayisi"=:sayfa, "yayinTarihi"=:tarih, "yayinEvi_id"=:yayinevi WHERE "kitap_id"=:kitap_id');
+    $stmt->execute([
+        'ad' => $ad,
+        'isbn' => $isbn,
+        'sayfa' => $sayfa,
+        'tarih' => $tarih,
+        'yayinevi' => $yayinevi,
+        'kitap_id' => $kitap_id
+    ]);
+
+    $stmt = $db->prepare('UPDATE "KitapYazar" SET "yazar_id"=:yazar WHERE "kitap_id"=:kitap_id');
+    $stmt->execute([
+        'yazar' => $yazar,
+        'kitap_id' => $kitap_id
+    ]);
+
+    $stmt = $db->prepare('UPDATE "KitapKategori" SET "kategori_id"=:kategori WHERE "kitap_id"=:kitap_id');
+    $stmt->execute([
+        'kategori' => $kategori,
+        'kitap_id' => $kitap_id
+    ]);
+
+    if ($stmt) {
+        header("Location: kitapduzenle.php?kitap_id=$kitap_id&durum=ok");
+    } else {
+        header("Location: kitapduzenle.php?kitap_id=$kitap_id&durum=no");
+    }
+}
+
+
+if (isset($_GET['kitapsil'])) {
+    $kitap_id = $_GET['kitap_id'];
+
+    $stmt = $db->prepare('DELETE FROM "KitapYazar" WHERE "kitap_id"=:kitap_id');
+    $stmt->execute([
+        'kitap_id' => $kitap_id
+    ]);
+
+    $stmt = $db->prepare('DELETE FROM "KitapKategori" WHERE "kitap_id"=:kitap_id');
+    $stmt->execute([
+        'kitap_id' => $kitap_id
+    ]);
+
+    $stmt = $db->prepare('DELETE FROM "Kitaplar" WHERE "kitap_id"=:kitap_id');
+    $stmt->execute([
+        'kitap_id' => $kitap_id
+    ]);
+
+    if ($stmt) {
+        header("Location: kitaplar.php?durum=ok");
+    } else {
+        header("Location: kitaplar.php?durum=no");
+    }
+}
