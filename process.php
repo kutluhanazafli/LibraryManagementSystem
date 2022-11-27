@@ -542,3 +542,61 @@ if (isset($_GET['kitapsil'])) {
         header("Location: kitaplar.php?durum=no");
     }
 }
+
+
+if (isset($_POST['arsivekle'])){
+    $kitap_id = $_POST['kitap_id'];
+    $kutuphane_id = $_POST['kutuphane_id'];
+    $adet = $_POST['adet'];
+
+    $stmt = $db->prepare('INSERT INTO "Arsiv"("kitap_id", "kutuphane_id", "adet") VALUES (:kitap_id, :kutuphane_id, :adet)');
+    $stmt->execute([
+        'kitap_id' => $kitap_id,
+        'kutuphane_id' => $kutuphane_id,
+        'adet' => $adet
+    ]);
+
+    if ($stmt) {
+        header("Location: arsiv.php?durum=ok");
+    } else {
+        header("Location: arsiv.php?durum=no");
+    }
+}
+
+
+if (isset($_POST['arsivduzenle'])){
+    $kitap_id = $_POST['kitap_id'];
+    $kutuphane_id = $_POST['kutuphane_id'];
+    $adet = $_POST['adet'];
+    $arsiv_id = $_POST['arsiv_id'];
+
+    $stmt = $db->prepare('UPDATE "Arsiv" SET "kitap_id"=:kitap_id, "kutuphane_id"=:kutuphane_id, "adet"=:adet WHERE "arsiv_id"=:arsiv_id');
+    $stmt->execute([
+        'kitap_id' => $kitap_id,
+        'kutuphane_id' => $kutuphane_id,
+        'adet' => $adet,
+        'arsiv_id' => $arsiv_id
+    ]);
+
+    if ($stmt) {
+        header("Location: arsivduzenle.php?arsiv_id=$arsiv_id&durum=ok");
+    } else {
+        header("Location: arsivduzenle.php?arsiv_id=$arsiv_id&durum=no");
+    }
+}
+
+
+if (isset($_GET['arsivsil'])) {
+    $arsiv_id = $_GET['arsiv_id'];
+
+    $stmt = $db->prepare('DELETE FROM "Arsiv" WHERE "arsiv_id"=:arsiv_id');
+    $stmt->execute([
+        'arsiv_id' => $arsiv_id
+    ]);
+
+    if ($stmt) {
+        header("Location: arsiv.php?durum=ok");
+    } else {
+        header("Location: arsiv.php?durum=no");
+    }
+}
