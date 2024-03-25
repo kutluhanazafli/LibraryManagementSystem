@@ -1,3 +1,4 @@
 # LibraryManagementSystem
 
- ![Project](https://cdn.discordapp.com/attachments/581509924325163040/1043234947059695747/image.png)
+Importing SQL file via CLI <br>
+`psql -U db_user db_name < dump_name.sql `
