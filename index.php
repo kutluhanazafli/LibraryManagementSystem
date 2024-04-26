@@ -96,7 +96,7 @@ include "_header.php";
                 <div class="page front contents">
                     <div class="intro">
                         <h2>Kütüphane <br> Yönetim <br> Sistemi</h2>
-                        <h1>2022</h1>
+                        <h1><script>document.write(new Date().getFullYear())</script></h1>
                     </div>
                 </div>
             </div>
