@@ -700,6 +700,10 @@ if (isset($_GET['emanetsil'])) {
 
     $stmt = $db->prepare('INSERT INTO "Arsiv"("kitap_id", "kutuphane_id", "adet") VALUES (:kitap_id, :kutuphane_id, 1) ON CONFLICT ("kitap_id", "kutuphane_id") DO UPDATE SET "adet"="adet"+1');
 
+    $stmt1 = $db->prepare('DELETE FROM "Emanet" WHERE emanet_id=:emanet_id');
+    $stmt1->execute([
+        'emanet_id' => $emanet_id
+    ]);
 
     if ($stmt) {
         header("Location: emanetler.php?durum=ok");
