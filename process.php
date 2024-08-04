@@ -445,14 +445,18 @@ if (isset($_POST['kitapekle'])) {
     $yayinevi = $_POST['yayinevi'];
     $yazar = $_POST['yazar'];
     $kategori = $_POST['kategori'];
+    $dolap = $_POST['dolap'];
+    $raf = $_POST['raf'];
 
-    $stmt = $db->prepare('INSERT INTO "Kitaplar"("kitapAdi", "ISBN", "sayfaSayisi", "yayinTarihi", "yayinEvi_id") VALUES (:ad, :isbn, :sayfa, :tarih, :yayinevi) RETURNING kitap_id as kitap_id');
+    $stmt = $db->prepare('INSERT INTO "Kitaplar"("kitapAdi", "ISBN", "sayfaSayisi", "yayinTarihi", "yayinEvi_id", "dolap", "raf") VALUES (:ad, :isbn, :sayfa, :tarih, :yayinevi, :dolap, :raf) RETURNING kitap_id as kitap_id');
     $stmt->execute([
         'ad' => $ad,
         'isbn' => $isbn,
         'sayfa' => $sayfa,
         'tarih' => $tarih,
-        'yayinevi' => $yayinevi
+        'yayinevi' => $yayinevi,
+        'dolap' => $dolap,
+        'raf' => $raf
     ]);
 
     $kitap_id = $stmt->fetch(PDO::FETCH_ASSOC)['kitap_id'];
@@ -486,15 +490,19 @@ if (isset($_POST['kitapduzenle'])){
     $yayinevi = $_POST['yayinevi'];
     $yazar = $_POST['yazar'];
     $kategori = $_POST['kategori'];
+    $dolap = $_POST['dolap'];
+    $raf = $_POST['raf'];
     $kitap_id = (int)$_POST['kitap_id'];
 
-    $stmt = $db->prepare('UPDATE "Kitaplar" SET "kitapAdi"=:ad, "ISBN"=:isbn, "sayfaSayisi"=:sayfa, "yayinTarihi"=:tarih, "yayinEvi_id"=:yayinevi WHERE "kitap_id"=:kitap_id');
+    $stmt = $db->prepare('UPDATE "Kitaplar" SET "kitapAdi"=:ad, "ISBN"=:isbn, "sayfaSayisi"=:sayfa, "yayinTarihi"=:tarih, "yayinEvi_id"=:yayinevi, "dolap"=:dolap, "raf"=:raf WHERE "kitap_id"=:kitap_id');
     $stmt->execute([
         'ad' => $ad,
         'isbn' => $isbn,
         'sayfa' => $sayfa,
         'tarih' => $tarih,
         'yayinevi' => $yayinevi,
+        'dolap' => $dolap,
+        'raf' => $raf,
         'kitap_id' => $kitap_id
     ]);
 

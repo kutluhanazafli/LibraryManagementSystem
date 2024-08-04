@@ -95,6 +95,16 @@ $kitap = $stmt->fetch(PDO::FETCH_ASSOC);
                                         <?php } ?>
                                     </select>
                                 </div>
+                                <div class="mb-3 col-sm-6">
+                                    <label for="exampleInputText3" class="form-label">Sayfa Sayısı</label>
+                                    <input required type="text" class="form-control" id="exampleInputText3" name="dolap"
+                                           value="<?php echo $kitap['dolap']?>" placeholder="Kitabın Bulunduğu Dolabı Giriniz">
+                                </div>
+                                <div class="mb-3 col-sm-6">
+                                    <label for="exampleInputText3" class="form-label">Sayfa Sayısı</label>
+                                    <input required type="text" class="form-control" id="exampleInputText3" name="raf"
+                                           value="<?php echo $kitap['raf']?>" placeholder="Kitabın Bulunduğu Rafı Giriniz">
+                                </div>
                             </div>
 
                             <button class="btn btn-primary" type="submit" name="kitapduzenle">Gönder</button>

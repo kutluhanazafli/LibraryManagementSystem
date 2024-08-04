@@ -68,6 +68,16 @@ include "_header.php";
                                         <?php } ?>
                                     </select>
                                 </div>
+                                <div class="mb-3 col-sm-6">
+                                    <label for="exampleInputText3" class="form-label">Dolap</label>
+                                    <input required type="text" class="form-control" id="exampleInputText3" name="dolap"
+                                           value="" placeholder="Kitabın Bulunduğu Dolabı Giriniz">
+                                </div>
+                                <div class="mb-3 col-sm-6">
+                                    <label for="exampleInputText3" class="form-label">Raf</label>
+                                    <input required type="text" class="form-control" id="exampleInputText3" name="raf"
+                                           value="" placeholder="Kitabın Bulunduğu Rafı Giriniz">
+                                </div>
                             </div>
 
                             <button class="btn btn-primary" type="submit" name="kitapekle">Gönder</button>

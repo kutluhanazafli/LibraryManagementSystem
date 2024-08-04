@@ -2,7 +2,7 @@
 $host='localhost';
 $dbname = 'library';
 $username = 'postgres';
-$password = '1';
+$password = 'postgres';
 
 $dsn = "pgsql:host=$host;port=5432;dbname=$dbname;user=$username;password=$password";
 
