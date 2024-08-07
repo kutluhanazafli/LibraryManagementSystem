@@ -41,7 +41,7 @@ $kitap = $stmt->fetch(PDO::FETCH_ASSOC);
                                     <input required type="text" class="form-control" id="exampleInputText4" name="kitap_tarih"
                                            value="<?php echo $kitap['yayinTarihi']?>" placeholder="Kitap Yayın Tarihi Giriniz">
                                 </div>
-                                <div class="mb-3 col-sm-4">
+                                <div class="mb-3 col-sm-3">
                                     <label for="exampleFormControlSelect5" class="form-label">Kitap Yayınevini Seçiniz</label>
                                     <select required class="form-select" name="yayinevi" id="yayinevi">
                                         <option selected disabled>Yayınevi Seçiniz</option>
@@ -59,7 +59,7 @@ $kitap = $stmt->fetch(PDO::FETCH_ASSOC);
                                         <?php } ?>
                                     </select>
                                 </div>
-                                <div class="mb-3 col-sm-4">
+                                <div class="mb-3 col-sm-3">
                                     <label for="exampleFormControlSelect6" class="form-label">Kitap Yazarını Seçiniz</label>
                                     <select required class="form-select" name="yazar" id="yazar">
                                         <option selected disabled>Yazar Seçiniz</option>
@@ -77,7 +77,7 @@ $kitap = $stmt->fetch(PDO::FETCH_ASSOC);
                                         <?php } ?>
                                     </select>
                                 </div>
-                                <div class="mb-3 col-sm-4">
+                                <div class="mb-3 col-sm-3">
                                     <label for="exampleFormControlSelect7" class="form-label">Kitap Kategorisini Seçiniz</label>
                                     <select required class="form-select" name="kategori" id="kategori">
                                         <option selected disabled>Kategori Seçiniz</option>
@@ -95,13 +95,31 @@ $kitap = $stmt->fetch(PDO::FETCH_ASSOC);
                                         <?php } ?>
                                     </select>
                                 </div>
+                                <div class="mb-3 col-sm-3">
+                                    <label for="exampleFormControlSelect7" class="form-label">Kitap Dilini Seçiniz</label>
+                                    <select required class="form-select" name="dil" id="dil">
+                                        <option selected disabled>Dil Seçiniz</option>
+                                        <?php
+                                        $dilSor = $db->query('SELECT * FROM "Diller"');
+                                        while ($dil = $dilSor->fetch(PDO::FETCH_ASSOC)) {
+                                            ?>
+                                            <option
+                                                <?php
+                                                if ($kitap['dil'] == $dil['dilAd']) {
+                                                    echo 'selected';
+                                                }
+                                                ?>
+                                                    value="<?php echo $dil['dilAd'] ?>"><?php echo $dil['dilAd'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
                                 <div class="mb-3 col-sm-6">
-                                    <label for="exampleInputText3" class="form-label">Sayfa Sayısı</label>
+                                    <label for="exampleInputText3" class="form-label">Kitabın Bulunduğu Dolap</label>
                                     <input required type="text" class="form-control" id="exampleInputText3" name="dolap"
                                            value="<?php echo $kitap['dolap']?>" placeholder="Kitabın Bulunduğu Dolabı Giriniz">
                                 </div>
                                 <div class="mb-3 col-sm-6">
-                                    <label for="exampleInputText3" class="form-label">Sayfa Sayısı</label>
+                                    <label for="exampleInputText3" class="form-label">Kitabın Bulunduğu Raf</label>
                                     <input required type="text" class="form-control" id="exampleInputText3" name="raf"
                                            value="<?php echo $kitap['raf']?>" placeholder="Kitabın Bulunduğu Rafı Giriniz">
                                 </div>
